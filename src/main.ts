@@ -25,7 +25,7 @@ async function run() {
     let target = core.getInput("target");
     let arch = core.getInput("arch");
     let modules = core.getInput("modules").split(" ");
-    let tools = core.getInput("tools").split(" ");
+    let tools_ifw = core.getInput("tools_ifw").split(" ");
 
     //set host automatically if omitted
     if (!host) {
@@ -79,12 +79,8 @@ async function run() {
 
     console.log("Tools...")
     await exec.exec(`${pythonName} -m aqt tool`, [`-h`]);
-    if (tools) {
-      tools.forEach(async function(tool_name) {
-        //run aqtinstall with args
-        console.log(`Tools ${tool_name} try to install`)
-        await exec.exec(`${pythonName} -m aqt tool`, ["--internal",`${host}`, `${tool_name}`]);
-      });
+    if (tools_ifw) {
+      await exec.exec(`${pythonName} -m aqt tool`, ["-O", `${dir}`,`${host}`, "tools_ifw", `${tools_ifw}`]);
     }
 
     //set environment variables

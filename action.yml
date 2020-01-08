@@ -22,7 +22,7 @@ inputs:
     default: 'true'
   modules:
     description: 'Additional Qt modules to install'
-  tools:
+  tools_ifw:
     description: 'Additional tools to install'
 runs:
   using: 'node12'
