@@ -25,7 +25,7 @@ async function run() {
     let target = core.getInput("target");
     let arch = core.getInput("arch");
     let modules = core.getInput("modules").split(" ");
-    let tools_ifw = core.getInput("tools_ifw").split(" ");
+    let tools_ifw = core.getInput("tools_ifw");
 
     //set host automatically if omitted
     if (!host) {
