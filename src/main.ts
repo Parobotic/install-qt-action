@@ -77,9 +77,11 @@ async function run() {
     //run aqtinstall with args
     await exec.exec(`${pythonName} -m aqt install`, args);
 
+    console.log("Tools...")
     if (tools) {
-      modules.forEach(async function(tool_name) {
+      tools.forEach(async function(tool_name) {
         //run aqtinstall with args
+        console.log(`Tools ${tool_name} try to install`)
         await exec.exec(`${pythonName} -m aqt tool`, [`${host}`, `${tool_name}`]);
       });
     }
