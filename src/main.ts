@@ -79,7 +79,7 @@ async function run() {
 
     console.log("Tools...")
     await exec.exec(`${pythonName} -m aqt tool`, [`-h`]);
-    await exec.exec(`${pythonName} -m aqt`, [`-h`]);
+    await exec.exec(`${pythonName} -m aqt install`, [`-h`]);
     if (tools_ifw) {
       let args = ["-O", `${dir}`,`${host}`, "tools_ifw"]
       //await exec.exec(`${pythonName} -m aqt tool`, args.concat(tools_ifw));
