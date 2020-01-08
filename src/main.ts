@@ -25,6 +25,7 @@ async function run() {
     let target = core.getInput("target");
     let arch = core.getInput("arch");
     let modules = core.getInput("modules").split(" ");
+    let tools = core.getInput("modules").split(" ");
 
     //set host automatically if omitted
     if (!host) {
@@ -58,6 +59,8 @@ async function run() {
     if (arch) {
       args.push(`${arch}`);
     }
+    
+
     if (modules) {
       args.push("-m");
       modules.forEach(function(currentValue) {
@@ -73,6 +76,13 @@ async function run() {
 
     //run aqtinstall with args
     await exec.exec(`${pythonName} -m aqt install`, args);
+
+    if (tools) {
+      modules.forEach(async function(tool_name) {
+        //run aqtinstall with args
+        await exec.exec(`${pythonName} -m aqt tool`, [`${host}`, `${tool_name}`]);
+      });
+    }
 
     //set environment variables
     let qtPath = dir + "/" + version;
